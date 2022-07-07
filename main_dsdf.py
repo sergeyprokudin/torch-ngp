@@ -37,7 +37,7 @@ if __name__ == '__main__':
         trainer.save_mesh(os.path.join(opt.workspace, 'results', 'output.ply'), 1024)
 
     else:
-        from dsdf.provider import SDFDataset
+        from dsdf.provider import DSDFDataset
         from loss import mape_loss
 
         train_dataset = SDFDataset(opt.path, size=100, num_samples=2**18)
