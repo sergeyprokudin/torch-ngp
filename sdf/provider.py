@@ -24,8 +24,8 @@ def plot_pointcloud(pc, sdfs):
     pc = trimesh.PointCloud(pc, color)
     trimesh.Scene([pc]).show()    
 
-# SDF dataset
-class SDFDataset(Dataset):
+# DSDF dataset
+class DSDFDataset(Dataset):
     def __init__(self, path, size=100, num_samples=2**18, clip_sdf=None):
         super().__init__()
         self.path = path

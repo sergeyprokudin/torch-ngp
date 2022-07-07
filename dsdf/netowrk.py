@@ -15,7 +15,6 @@ class DSDFNetwork(nn.Module):
                  ):
         super().__init__()
 
-
         self.num_layers = num_layers
         self.skips = skips
         self.hidden_dim = hidden_dim
@@ -44,7 +43,7 @@ class DSDFNetwork(nn.Module):
 
     
     def forward(self, x):
-        # x: [B, 3]
+        # x: [B, 4]
 
         x = self.encoder(x)
 

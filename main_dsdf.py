@@ -29,7 +29,7 @@ if __name__ == '__main__':
     else:
         from dsdf.netowrk import DSDFNetwork
 
-    model = SDFNetwork(encoding="hashgrid")
+    model = DSDFNetwork(encoding="hashgrid")
     print(model)
 
     if opt.test:
