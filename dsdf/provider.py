@@ -29,7 +29,10 @@ class DSDFDataset(Dataset):
     def __init__(self, path, size=100, num_samples=2**18, clip_sdf=None):
         super().__init__()
         self.path = path
-
+        self.size = size
+        self.num_samples = num_samples
+        assert self.num_samples % 8 == 0, "num_samples must be divisible by 8."
+        self.clip_sdf = clip_sdf
     
     def __len__(self):
         return self.size
@@ -55,13 +58,7 @@ class DSDFDataset(Dataset):
         # trimesh.Scene([self.mesh]).show()
 
         self.sdf_fn = pysdf.SDF(self.mesh.vertices, self.mesh.faces)
-
-        self.num_samples = num_samples
-        assert self.num_samples % 8 == 0, "num_samples must be divisible by 8."
-        self.clip_sdf = clip_sdf
-
-        self.size = size
-
+        
         # online sampling
         sdfs = np.zeros((self.num_samples, 1))
         # surface
