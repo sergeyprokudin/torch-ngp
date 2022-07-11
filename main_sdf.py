@@ -43,7 +43,7 @@ if __name__ == '__main__':
         train_dataset = DSDFDataset(opt.path, size=100, num_samples=2**18)
         train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=1, shuffle=True)
 
-        valid_dataset = SDFDataset(opt.path, size=1, num_samples=2**18) # just a dummy
+        valid_dataset = DSDFDataset(opt.path, size=1, num_samples=2**18) # just a dummy
         valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=1)
 
         criterion = mape_loss # torch.nn.L1Loss()
