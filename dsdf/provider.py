@@ -40,7 +40,7 @@ class DSDFDataset(Dataset):
     def __getitem__(self, _):
 
         # load obj
-        self.mesh = trimesh.load(path, force='mesh')
+        self.mesh = trimesh.load(self.path, force='mesh')
 
         # normalize to [-1, 1] (different from instant-sdf where is [0, 1])
         vs = self.mesh.vertices
@@ -58,7 +58,7 @@ class DSDFDataset(Dataset):
         # trimesh.Scene([self.mesh]).show()
 
         self.sdf_fn = pysdf.SDF(self.mesh.vertices, self.mesh.faces)
-        
+
         # online sampling
         sdfs = np.zeros((self.num_samples, 1))
         # surface
