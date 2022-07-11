@@ -45,8 +45,9 @@ class DSDFNetwork(nn.Module):
     def forward(self, x):
         # x: [B, 4]
 
-        #import ipdb; ipdb.set_trace()
+        import ipdb; ipdb.set_trace()
         #x = x.double()
+
         x = self.encoder(x)
         #x = x.double()
 
