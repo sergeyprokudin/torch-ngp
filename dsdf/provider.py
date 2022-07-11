@@ -30,7 +30,13 @@ class DSDFDataset(Dataset):
         super().__init__()
         self.path = path
 
-        # load obj 
+    
+    def __len__(self):
+        return self.size
+
+    def __getitem__(self, _):
+
+        # load obj
         self.mesh = trimesh.load(path, force='mesh')
 
         # normalize to [-1, 1] (different from instant-sdf where is [0, 1])
@@ -46,21 +52,15 @@ class DSDFDataset(Dataset):
 
         if not self.mesh.is_watertight:
             print(f"[WARN] mesh is not watertight! SDF maybe incorrect.")
-        #trimesh.Scene([self.mesh]).show()
+        # trimesh.Scene([self.mesh]).show()
 
         self.sdf_fn = pysdf.SDF(self.mesh.vertices, self.mesh.faces)
-        
+
         self.num_samples = num_samples
         assert self.num_samples % 8 == 0, "num_samples must be divisible by 8."
         self.clip_sdf = clip_sdf
 
         self.size = size
-
-    
-    def __len__(self):
-        return self.size
-
-    def __getitem__(self, _):
 
         # online sampling
         sdfs = np.zeros((self.num_samples, 1))
