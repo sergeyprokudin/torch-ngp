@@ -20,7 +20,7 @@ class DSDFNetwork(nn.Module):
         self.hidden_dim = hidden_dim
         self.clip_sdf = clip_sdf
 
-        self.encoder, self.in_dim = get_encoder(encoding, input_dim=4)
+        self.encoder, self.in_dim = get_encoder('frequency', input_dim=4)
 
         backbone = []
 
