@@ -68,10 +68,10 @@ class DSDFDataset(Dataset):
         # random
         points_uniform = np.random.rand(self.num_samples // 8, 3) * 2 - 1
         points = np.concatenate([points_surface, points_uniform], axis=0).astype(np.float32)
-        points = np.concatenate([points, np.ones([len(points),1])], axis=1)
-        
+
         sdfs[self.num_samples // 2:] = -self.sdf_fn(points[self.num_samples // 2:])[:,None].astype(np.float32)
- 
+
+        points = np.concatenate([points, np.ones([len(points), 1])], axis=1)
         # clip sdf
         if self.clip_sdf is not None:
             sdfs = sdfs.clip(-self.clip_sdf, self.clip_sdf)
