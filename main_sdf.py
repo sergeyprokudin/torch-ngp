@@ -37,10 +37,10 @@ if __name__ == '__main__':
         trainer.save_mesh(os.path.join(opt.workspace, 'results', 'output.ply'), 1024)
 
     else:
-        from sdf.provider import SDFDataset
+        from dsdf.provider import DSDFDataset
         from loss import mape_loss
 
-        train_dataset = SDFDataset(opt.path, size=100, num_samples=2**18)
+        train_dataset = DSDFDataset(opt.path, size=100, num_samples=2**18)
         train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=1, shuffle=True)
 
         valid_dataset = SDFDataset(opt.path, size=1, num_samples=2**18) # just a dummy
