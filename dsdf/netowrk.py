@@ -46,6 +46,7 @@ class DSDFNetwork(nn.Module):
         # x: [B, 4]
 
         #import ipdb; ipdb.set_trace()
+        x = x.double()
         x = self.encoder(x)
 
         h = x
