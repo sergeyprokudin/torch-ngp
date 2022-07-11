@@ -46,9 +46,10 @@ class DSDFNetwork(nn.Module):
         # x: [B, 4]
 
         #import ipdb; ipdb.set_trace()
-        x = x.double()
-        x = self.encoder(x)
 
+        x = self.encoder(x)
+        x = x.float()
+        
         h = x
         for l in range(self.num_layers):
             if l in self.skips:
