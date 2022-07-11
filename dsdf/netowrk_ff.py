@@ -24,7 +24,7 @@ class SDFNetwork(nn.Module):
         
         assert self.skips == [], 'FFMLP does not support concatenating inside, please use skips=[].'
 
-        self.encoder, self.in_dim = get_encoder(encoding)
+        self.encoder, self.in_dim = get_encoder(encoding, input_dim=4)
 
         self.backbone = FFMLP(
             input_dim=self.in_dim, 

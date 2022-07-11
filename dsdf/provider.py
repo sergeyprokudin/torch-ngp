@@ -53,8 +53,8 @@ class DSDFDataset(Dataset):
 
         print(f"[INFO] mesh: {self.mesh.vertices.shape} {self.mesh.faces.shape}")
 
-        if not self.mesh.is_watertight:
-            print(f"[WARN] mesh is not watertight! SDF maybe incorrect.")
+        #if not self.mesh.is_watertight:
+        #    print(f"[WARN] mesh is not watertight! SDF maybe incorrect.")
         # trimesh.Scene([self.mesh]).show()
 
         self.sdf_fn = pysdf.SDF(self.mesh.vertices, self.mesh.faces)
@@ -68,7 +68,8 @@ class DSDFDataset(Dataset):
         # random
         points_uniform = np.random.rand(self.num_samples // 8, 3) * 2 - 1
         points = np.concatenate([points_surface, points_uniform], axis=0).astype(np.float32)
-
+        points = np.concatenate([points, np.ones([len(points),1])], axis=1)
+        
         sdfs[self.num_samples // 2:] = -self.sdf_fn(points[self.num_samples // 2:])[:,None].astype(np.float32)
  
         # clip sdf

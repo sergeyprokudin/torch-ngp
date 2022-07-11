@@ -23,7 +23,7 @@ class SDFNetwork(nn.Module):
         assert self.skips == [], 'TCNN does not support concatenating inside, please use skips=[].'
 
         self.encoder = tcnn.Encoding(
-            n_input_dims=3,
+            n_input_dims=4,
             encoding_config={
                 "otype": "HashGrid",
                 "n_levels": 16,
@@ -48,7 +48,7 @@ class SDFNetwork(nn.Module):
 
     
     def forward(self, x):
-        # x: [B, 3]
+        # x: [B, 4]
 
         x = (x + 1) / 2 # to [0, 1]
         x = self.encoder(x)
