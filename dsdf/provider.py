@@ -71,7 +71,7 @@ class DSDFDataset(Dataset):
 
         sdfs[self.num_samples // 2:] = -self.sdf_fn(points[self.num_samples // 2:])[:,None].astype(np.float32)
 
-        points = np.concatenate([points, np.ones([len(points), 1])], axis=1)
+        points = np.concatenate([points, np.ones([len(points), 1]).astype('float')], axis=1)
         # clip sdf
         if self.clip_sdf is not None:
             sdfs = sdfs.clip(-self.clip_sdf, self.clip_sdf)
