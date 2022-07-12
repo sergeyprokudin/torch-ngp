@@ -59,6 +59,7 @@ def extract_fields(bound_min, bound_max, resolution, query_func):
                 for zi, zs in enumerate(Z):
                     xx, yy, zz = custom_meshgrid(xs, ys, zs)
                     pts = torch.cat([xx.reshape(-1, 1), yy.reshape(-1, 1), zz.reshape(-1, 1)], dim=-1) # [N, 3]
+                    pts = torch.cat([pts, torch.ones_like(xx.reshape(-1, 1))], dim=-1)
                     val = query_func(pts).reshape(len(xs), len(ys), len(zs)).detach().cpu().numpy() # [N, 1] --> [x, y, z]
                     u[xi * N: xi * N + len(xs), yi * N: yi * N + len(ys), zi * N: zi * N + len(zs)] = val
     return u
