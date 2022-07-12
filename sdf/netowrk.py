@@ -7,7 +7,7 @@ from encoding import get_encoder
 
 class SDFNetwork(nn.Module):
     def __init__(self,
-                 encoding="hashgrid",
+                 encoding="frequency",
                  num_layers=3,
                  skips=[],
                  hidden_dim=64,

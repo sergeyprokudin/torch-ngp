@@ -58,7 +58,7 @@ if __name__ == '__main__':
 
         trainer = Trainer('ngp', model, workspace=opt.workspace, optimizer=optimizer, criterion=criterion, ema_decay=0.95, fp16=opt.fp16, lr_scheduler=scheduler, use_checkpoint='latest', eval_interval=1)
 
-        trainer.save_mesh(os.path.join(opt.workspace, 'results', 'output.ply'), 1024)
+        #trainer.save_mesh(os.path.join(opt.workspace, 'results', 'output.ply'), 1024)
 
         trainer.train(train_loader, valid_loader, 20)
 
