@@ -29,7 +29,7 @@ if __name__ == '__main__':
     else:
         from sdf.netowrk import SDFNetwork
 
-    model = SDFNetwork(encoding="hashgrid")
+    model = SDFNetwork(encoding="frequency")
     print(model)
 
     if opt.test:
@@ -37,13 +37,13 @@ if __name__ == '__main__':
         trainer.save_mesh(os.path.join(opt.workspace, 'results', 'output.ply'), 1024)
 
     else:
-        from dsdf.provider import DSDFDataset
+        from sdf.provider import SDFDataset
         from loss import mape_loss
 
-        train_dataset = DSDFDataset(opt.path, size=100, num_samples=2**18)
+        train_dataset = SDFDataset(opt.path, size=100, num_samples=2**18)
         train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=1, shuffle=True)
 
-        valid_dataset = DSDFDataset(opt.path, size=1, num_samples=2**18) # just a dummy
+        valid_dataset = SDFDataset(opt.path, size=1, num_samples=2**18) # just a dummy
         valid_loader = torch.utils.data.DataLoader(valid_dataset, batch_size=1)
 
         criterion = mape_loss # torch.nn.L1Loss()
